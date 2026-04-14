@@ -1,0 +1,30 @@
+{
+  "name": "vaultaudit-ai",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Privacy-first, offline-capable personal financial auditor",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.2.17",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.8.0",
+    "motion": "^12.38.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.14.0",
+    "recharts": "^3.8.1",
+    "tailwind-merge": "^3.5.0",
+    "tesseract.js": "^5.1.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.4",
+    "@vitejs/plugin-react": "^4.4.1",
+    "tailwindcss": "^4.1.4",
+    "vite": "^6.3.2"
+  }
+}
