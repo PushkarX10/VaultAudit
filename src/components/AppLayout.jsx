@@ -11,6 +11,7 @@ import {
   LayoutDashboard,
   ScanSearch,
   FileInput,
+  Inbox,
   Settings,
   Shield,
   ChevronLeft,
@@ -22,6 +23,7 @@ import { useState } from 'react';
 
 const navItems = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+  { to: '/queue', icon: Inbox, label: 'Shared Queue' },
   { to: '/audits', icon: ScanSearch, label: 'Auditor Feed' },
   { to: '/ingest', icon: FileInput, label: 'OCR Ingestion' },
   { to: '/settings', icon: Settings, label: 'Vault Settings' },

@@ -14,6 +14,7 @@ import Dashboard from './components/Dashboard.jsx';
 import ReceiptUploader from './components/ReceiptUploader.jsx';
 import TransactionList from './components/TransactionList.jsx';
 import Settings from './components/Settings.jsx';
+import ReceiptQueue from './components/ReceiptQueue.jsx';
 import { ErrorBoundary } from './components/ErrorBoundary.jsx';
 
 export default function App() {
@@ -93,6 +94,15 @@ export default function App() {
                 <p className="text-sm text-slate-500 mt-0.5">Upload receipts for local, privacy-first processing</p>
               </div>
               <ReceiptUploader />
+            </div>
+          } />
+          <Route path="queue" element={
+            <div className="p-6 max-w-5xl mx-auto space-y-6 animate-in fade-in duration-300">
+              <div>
+                <h1 className="text-2xl font-bold text-slate-900">Shared Receipts Queue</h1>
+                <p className="text-sm text-slate-500 mt-0.5">Receipts shared from other apps are waiting here for processing</p>
+              </div>
+              <ReceiptQueue />
             </div>
           } />
           <Route path="settings" element={<Settings />} />

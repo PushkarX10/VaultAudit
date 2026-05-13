@@ -10,7 +10,8 @@
  * Amount is auto-extracted with a manual override field.
  */
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { extractText } from '../services/ocrService.js';
 import { sanitize } from '../services/piiMasker.js';
 import { auditTransaction } from '../services/auditService.js';
@@ -29,6 +30,17 @@ export default function ReceiptUploader({ onTransactionAdded }) {
   const [processing, setProcessing] = useState([]); // per-file status
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.state?.queuedFile) {
+      processFiles([location.state.queuedFile]);
+      
+      // Clear the state so it doesn't process again on refresh
+      navigate('.', { replace: true, state: {} });
+    }
+  }, [location.state]);
 
   // ── Drag-and-drop handlers ──────────────────────────────────
 
