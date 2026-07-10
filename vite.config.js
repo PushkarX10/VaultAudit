@@ -2,8 +2,8 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import path from 'path';
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
@@ -12,10 +12,12 @@ export default defineConfig({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
       manifest: {
-        name: 'VaultAudit',
+        name: 'VaultAudit AI',
         short_name: 'VaultAudit',
-        description: 'Privacy-first, offline-capable personal financial auditor',
-        theme_color: '#ffffff',
+        description: 'Privacy-first, offline-capable personal financial auditor with AI insights',
+        theme_color: '#050505',
+        background_color: '#050505',
+        display: 'standalone',
         share_target: {
           action: '/receive-share',
           method: 'POST',
@@ -36,18 +38,21 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,wasm}'],
         importScripts: ['/share-target-sw.js'],
-        maximumFileSizeToCacheInBytes: 10 * 1024 * 1024 // 10MB to accommodate PGLite wasm
+        maximumFileSizeToCacheInBytes: 10 * 1024 * 1024
       }
     })
   ],
 
-  // PGLite uses WASM modules that must be excluded from Vite's
-  // dependency optimization to avoid bundling issues.
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+
   optimizeDeps: {
     exclude: ['@electric-sql/pglite'],
   },
 
-  // ES module format required for PGLite multi-tab worker support.
   worker: {
     format: 'es',
   },
